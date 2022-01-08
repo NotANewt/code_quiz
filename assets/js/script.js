@@ -4,6 +4,7 @@
 const startButton = document.getElementById("start");
 const questionsDiv = document.getElementById("questions");
 const answersDiv = document.getElementById("answers");
+const timerElement = document.getElementById("timer");
 const questions = [
   {
     title: "What is David Blaine's first name?",
@@ -17,16 +18,22 @@ const questions = [
     correct: "Smith",
   },
 ];
+let qIndex = 0;
+let timerCount = 10;
+let isWin = false;
 
 //functions//
 function startGame() {
   //hide introTest div
   document.getElementById("introTest").style.display = "none";
+  //clear out previous question
+  answersDiv.textContent = "";
+
   //show first question with answer
-  questionsDiv.innerHTML = questions[0].title;
+  questionsDiv.innerHTML = questions[qIndex].title;
 
   //loop through answers
-  questions[0].answers.forEach((answer) => {
+  questions[qIndex].answers.forEach((answer) => {
     //create element button
     const answerBtn = document.createElement("button");
     answerBtn.textContent = answer;
@@ -42,21 +49,65 @@ function startGame() {
 //other functions we'll need
 //answer click function (function that will check the answer)
 function answerClick() {
-  var clickedAnswer = this.value;
-
-  if (clickedAnswer === questions[0].correct) {
+  // Determine the answer the user chose
+  let clickedAnswer = this.value;
+  //check to see if the answer is correct
+  if (clickedAnswer === questions[qIndex].correct) {
+    //let user know they are correct
     alert("You got the right answer!");
+    //add one to the question index
+    qIndex++;
+    //check if there are more questions
+    if (questions.length > qIndex) {
+      //if so, move to next question
+      startGame();
+    } else {
+      endGame();
+    }
   } else {
+    //let user know they are wrong
+    //TO DO: subtract time from timer
     alert("You got the wrong answer");
   }
 }
-//timer
 
 //end quiz - enter initials to go with high score
-//save high score
+function endGame() {
+  isWin = true;
+}
+
+//timer
+function startTimer() {
+  //call startGame function
+  startGame();
+  // Sets timer
+  timer = setInterval(function () {
+    timerCount--;
+    timerElement.textContent = timerCount;
+    if (timerCount >= 0) {
+      // Tests if win condition is met
+      if (isWin && timerCount > 0) {
+        // Clears interval and stops timer
+        alert(timerCount);
+        clearInterval(timer);
+        //winGame();
+        alert("You win!");
+      }
+    }
+    // Tests if time has run out
+    if (timerCount === 0) {
+      // Clears interval
+      clearInterval(timer);
+      //loseGame();
+      alert("You lost!");
+    }
+  }, 1000);
+}
+
+//To Do: save high score
 
 //initialization//
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", startTimer);
 
 /* My first crack at pseudocoding
 GIVEN I am taking a code quiz
