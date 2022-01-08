@@ -1,5 +1,3 @@
-//Pseudocoding with Scott during office hours//
-
 //Global Variables//
 const startButton = document.getElementById("start");
 const questionsDiv = document.getElementById("questions");
@@ -19,8 +17,11 @@ const questions = [
   },
 ];
 let qIndex = 0;
-let timerCount = 10;
+let timerCount = 30;
 let isWin = false;
+
+//hide lostGame div
+document.getElementById("lostGame").style.display = "none";
 
 //functions//
 function startGame() {
@@ -46,12 +47,12 @@ function startGame() {
   });
 }
 
-//other functions we'll need
 //answer click function (function that will check the answer)
 function answerClick() {
   // Determine the answer the user chose
   let clickedAnswer = this.value;
   //check to see if the answer is correct
+  //if the answer is correct
   if (clickedAnswer === questions[qIndex].correct) {
     //let user know they are correct
     alert("You got the right answer!");
@@ -62,18 +63,33 @@ function answerClick() {
       //if so, move to next question
       startGame();
     } else {
+      //if there are no more questions, end the game
       endGame();
     }
   } else {
     //let user know they are wrong
-    //TO DO: subtract time from timer
     alert("You got the wrong answer");
+    //TO DO: subtract time from timer
+    timerCount = timerCount - 5;
+    checkTime();
   }
 }
 
 //end quiz - enter initials to go with high score
 function endGame() {
   isWin = true;
+}
+
+//function to end quiz if user lost the game
+function loseGame() {
+  //hide questions
+  document.getElementById("questions").style.display = "none";
+  //hide answers
+  document.getElementById("answers").style.display = "none";
+  //hide timer
+  document.getElementById("timer").style.display = "none";
+  //show lostGame div
+  document.getElementById("lostGame").style.display = "block";
 }
 
 //timer
@@ -94,14 +110,17 @@ function startTimer() {
         alert("You win!");
       }
     }
-    // Tests if time has run out
-    if (timerCount === 0) {
-      // Clears interval
-      clearInterval(timer);
-      //loseGame();
-      alert("You lost!");
-    }
+    checkTime();
   }, 1000);
+}
+
+//function to check if time has reached zero
+function checkTime() {
+  if (timerCount <= 0) {
+    // Clears interval
+    clearInterval(timer);
+    loseGame();
+  }
 }
 
 //To Do: save high score
