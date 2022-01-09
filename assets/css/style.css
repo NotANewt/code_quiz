@@ -1,0 +1,4 @@
+/*class to hide content of element*/
+.hidden {
+  display: none;
+}

@@ -3,6 +3,8 @@ const startButton = document.getElementById("start");
 const questionsDiv = document.getElementById("questions");
 const answersDiv = document.getElementById("answers");
 const timerElement = document.getElementById("timer");
+const submitInitialsBtn = document.getElementById("submitInitialsBtn");
+const highScoresList = document.getElementById("highScoresList");
 const questions = [
   {
     title: "What is David Blaine's first name?",
@@ -16,23 +18,42 @@ const questions = [
     correct: "Smith",
   },
 ];
+
 let qIndex = 0;
 let timerCount = 30;
 let isWin = false;
 
-//hide lostGame div
-document.getElementById("lostGame").style.display = "none";
-
 //functions//
-function startGame() {
+
+//function to hide intro, wonGame, and lostGame divs
+function hideIntroTestwonGamelostGameDivs() {
   //hide introTest div
-  document.getElementById("introTest").style.display = "none";
+  document.getElementById("introTest").classList.add("hidden");
+  //hide wonGame div
+  document.getElementById("wonGame").classList.add("hidden");
+  //hide lostGame div
+  document.getElementById("lostGame").classList.add("hidden");
+}
+
+//function to hide question, answers, result, and timer divs
+function hideQuestionAnswersResultTimerDivs() {
+  //hide questions
+  document.getElementById("questions").classList.add("hidden");
+  //hide answers
+  document.getElementById("answers").classList.add("hidden");
+  //hide timer
+  document.getElementById("timer").classList.add("hidden");
+  //hide result
+  document.getElementById("result").classList.add("hidden");
+}
+
+function showQuestionAnswers() {
+  //hide intro div
+  document.getElementById("introTest").classList.add("hidden");
   //clear out previous question
   answersDiv.textContent = "";
-
-  //show first question with answer
+  //show question
   questionsDiv.innerHTML = questions[qIndex].title;
-
   //loop through answers
   questions[qIndex].answers.forEach((answer) => {
     //create element button
@@ -47,88 +68,92 @@ function startGame() {
   });
 }
 
-//answer click function (function that will check the answer)
+//answer click function to check the answer)
 function answerClick() {
   // Determine the answer the user chose
   let clickedAnswer = this.value;
   //check to see if the answer is correct
   //if the answer is correct
   if (clickedAnswer === questions[qIndex].correct) {
-    //let user know they are correct
-    alert("You got the right answer!");
+    //show "Correct!" in the div under the answers
+    document.getElementById("result").innerHTML = "Correct!";
     //add one to the question index
     qIndex++;
-    //check if there are more questions
-    if (questions.length > qIndex) {
-      //if so, move to next question
-      startGame();
-    } else {
-      //if there are no more questions, end the game
-      endGame();
-    }
+    //call function to check if there are more questions
+    checkIfMoreQuestions();
   } else {
-    //let user know they are wrong
-    alert("You got the wrong answer");
-    //TO DO: subtract time from timer
+    //show "Incorrect!" in the div under the answers
+    document.getElementById("result").innerHTML = "Incorrect!  Time has subtracted from the timer.";
+    //subtract time from timer
     timerCount = timerCount - 5;
-    checkTime();
   }
-}
-
-//end quiz - enter initials to go with high score
-function endGame() {
-  isWin = true;
-}
-
-//function to end quiz if user lost the game
-function loseGame() {
-  //hide questions
-  document.getElementById("questions").style.display = "none";
-  //hide answers
-  document.getElementById("answers").style.display = "none";
-  //hide timer
-  document.getElementById("timer").style.display = "none";
-  //show lostGame div
-  document.getElementById("lostGame").style.display = "block";
 }
 
 //timer
 function startTimer() {
-  //call startGame function
-  startGame();
+  //call showQuestionsAnswers function
+  showQuestionAnswers();
+  //show the timer element
+  document.getElementById("timer").classList.remove("hidden");
   // Sets timer
   timer = setInterval(function () {
     timerCount--;
     timerElement.textContent = timerCount;
+    //check if there is time left
     if (timerCount >= 0) {
-      // Tests if win condition is met
+      //if there are there is time left, text if win conditions are met
       if (isWin && timerCount > 0) {
         // Clears interval and stops timer
-        alert(timerCount);
         clearInterval(timer);
-        //winGame();
-        alert("You win!");
       }
+    } else {
+      //if there is no time left, user loses. call endGame function
+      endGame(0);
     }
-    checkTime();
+    //checkTime();
   }, 1000);
 }
 
-//function to check if time has reached zero
-function checkTime() {
-  if (timerCount <= 0) {
-    // Clears interval
-    clearInterval(timer);
-    loseGame();
+//function to check if there are more questions
+function checkIfMoreQuestions() {
+  if (questions.length > qIndex) {
+    //if there are more questions, call showQuestionsAnswers function
+    showQuestionAnswers();
+  } else {
+    //the user won the game, so set isWin to true
+    isWin = true;
+    //call endGame function
+    endGame();
   }
 }
 
-//To Do: save high score
+//endGame
+function endGame() {
+  //calls function to hide question, answer, and timer divs
+  hideQuestionAnswersResultTimerDivs();
+  if (isWin) {
+    //add final score to the span
+    document.getElementById("finalScore").innerHTML = timerCount;
+    //add final score to form
+    document.getElementById("initialsForm").innerHTML = timerCount;
+    //show wonGame div
+    document.getElementById("wonGame").classList.remove("hidden");
+  } else {
+    //show lostGame div
+    document.getElementById("lostGame").classList.remove("hidden");
+  }
+}
+
+//To Do: High Scores Page
+
+//Show High Scores
+//button to Go Back
+//button to Clear High Scores//
 
 //initialization//
 startButton.addEventListener("click", startTimer);
 
-/* My first crack at pseudocoding
+/* 
 GIVEN I am taking a code quiz
 WHEN I click the start button
 THEN a timer starts and I am presented with a question
@@ -140,45 +165,4 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
-
-
-//Start Button//
-//starts timer in top right of screen//
-//presents Question 1//
-
-//User Answers Question 1//
-if (questionRight) {
-  //inform user is correct//
-  //move to next question//
-} else {
-  //inform user is wrong//
-  //subtract time from clock//
-  //move to next question//
-}
-
-//check if time = 0//
-if (time > 0) {
-  //move on to next question
-} else {
-  //send to Game Over
-}
-
-//User Answers Last Question
-if (questionRight) {
-  //inform user is correct//
-  //send to Game Over//
-} else {
-  //inform user is wrong//
-  //subtract time from clock//
-  //send to Game Over//
-}
-
-//Game Over//
-//prompt to enter initials//
-//buttom to submit and send to High Scores Page//
-
-//High Scores Page//
-//Show High Scores//
-//button to Go Back//
-//button to Clear High Scores//
 */
