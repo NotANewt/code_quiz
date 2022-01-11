@@ -94,28 +94,35 @@ function initializeQuiz() {
 
 //record high scores function
 function recordHighScore() {
-  //check for initials
+  //variables for initials and score
   var initials = document.getElementById("initialsTextInput").value;
   var score = finalScore;
+  //check if user typed in initials before hitting submit
   //if no initials entered, alert user
   if (!initials) {
     alert("Please enter your intials to save your score.");
     return null;
   }
+  //variable for object newScore with initials and score
   var newScore = { initials: initials, score: score };
   //append initials and score to the leaderboard
   leaderboard.push(newScore);
   //write scores to local storage
   localStorage.setItem("savedLocalScores", JSON.stringify(leaderboard));
+  //call updateHighScoreDisplay to update display
   updateHighScoreDisplay();
+  //call showLeaderboard function to show updated leaderboard
   showLeaderboard();
 }
 
 //update high score display
 function updateHighScoreDisplay() {
+  //empty leaderboardList innerHTML
   leaderboardList.innerHTML = "";
+  //if there are items in the leaderboard array
   if (leaderboard.length > 0) {
-    //sort the leaderboard by score: got help from https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
+    //sort the leaderboard by score with highest score first
+    //got help from https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
     leaderboard.sort((a, b) => (a.score > b.score ? -1 : 1));
     //add each initials/score to the leaderboard list
     leaderboard.forEach(function (localStorageScore) {
@@ -126,20 +133,22 @@ function updateHighScoreDisplay() {
   }
 }
 
-//clear high scores
+//function to clear high scores
 function clearHighScores() {
+  //remove local storage of "savedLocalScores"
   localStorage.removeItem("savedLocalScores");
+  //set leaderboard to an empty array
   leaderboard = [];
+  //call updateHighScoreDisplay to update high scores
   updateHighScoreDisplay();
-  console.log("cleared scores");
 }
 
-//function to show container by id
+//utility function to show container by id
 function showContainerById(container) {
   document.getElementById(container).classList.remove("hidden");
 }
 
-//hide container by id
+//utility function to hide container by id
 function hideContainerById(container) {
   document.getElementById(container).classList.add("hidden");
 }
@@ -165,8 +174,9 @@ function hideEverything() {
 function showLeaderboard() {
   //hide everything
   hideEverything();
-  //show highScoresLeaderboard
+  //show keaderboardContainer
   showContainerById("leaderboardContainer");
+  //show playAgainContainer
   showContainerById("playAgainContainer");
 }
 
@@ -189,6 +199,7 @@ function showQuestionAnswers() {
     //append button to the answers div
     answersDiv.appendChild(answerBtn);
   });
+  //show quizContainer
   showContainerById("quizContainer");
 }
 
@@ -210,6 +221,7 @@ function answerClick() {
     document.getElementById("result").innerHTML = "Incorrect!  Time has subtracted from the timer.";
     //subtract time from timer
     timerCount = timerCount - 5;
+    //call updateTimerDisplay to update timer
     updateTimerDisplay();
   }
 }
@@ -230,11 +242,14 @@ function startTimer() {
     }
     //otherwise, count down
     timerCount--;
+    //call updateTimerDisplay function to update displayed time
     updateTimerDisplay();
     //check if there is time left
+    //if time reached 0 or less
     if (timerCount <= 0) {
       // Clears interval and ends the game
       clearInterval(timer);
+      //calls endGame function
       endGame(0);
     }
   }, 1000);
@@ -242,17 +257,21 @@ function startTimer() {
 
 //update timerDisplay
 function updateTimerDisplay() {
+  //if timer is negative, change to 0
   if (timerCount < 0) timerCount = 0;
+  //updates the timer to current timerCount
   timerElement.textContent = timerCount;
 }
 
 //function to check if there are more questions
 function checkIfMoreQuestions() {
+  //if the length of the questions array is higher than the qIndex (place in the array)
   if (questions.length > qIndex) {
-    //if there are more questions, call showQuestionsAnswers function
+    //call showQuestionsAnswers function to show next answer
     showQuestionAnswers();
+    //if there are no more questions in the array
   } else {
-    //the user won the game, so set isWin to true
+    //the user won the game,so set isWin to true
     isWin = true;
     //call endGame function
     endGame();
@@ -263,8 +282,9 @@ function checkIfMoreQuestions() {
 function endGame() {
   //hide everything
   hideEverything();
+  //if isWin is true, so the user answered all questions and there is time left on the timer
   if (isWin) {
-    //set finalScore
+    //set finalScore using current value of timerCount
     finalScore = timerCount;
     //add final score to the span
     document.getElementById("finalScore").innerHTML = finalScore;
@@ -273,46 +293,35 @@ function endGame() {
   } else {
     //show lostGame div
     showContainerById("lostGame");
+    //show playAgainContainer div
     showContainerById("playAgainContainer");
   }
+  //show resultsContainer div
   showContainerById("resultsContainer");
 }
 
 //playAgain
 function playAgain() {
   //reload webpage
-  console.log("playing again");
   location.reload();
 }
 
-//event listener for the "Start Quiz" button
+//listener events
+
+//"Start Quiz" button
 startButton.addEventListener("click", startTimer);
 
-//event listener for the "Save Initials" button
+//"Save Initials" button
 saveInitialsBtn.addEventListener("click", recordHighScore);
 
-//event listener to clear scores
+//clear high scores button
 clearHighScoresButton.addEventListener("click", clearHighScores);
 
-//event listener to show high scores
+//show high leaderboard button
 showHighScoresLink.addEventListener("click", showLeaderboard);
 
-//event listener to play again
+//play again button
 playAgainBtn.addEventListener("click", playAgain);
 
 //initialize
 initializeQuiz();
-
-/* 
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
-*/
