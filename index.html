@@ -10,62 +10,61 @@
 </head>
 
 <body>
+    <div id="header">
+        <a href="#" id="showHighScoresLink">Show High Scores</a>
+        <div id="timerContainer">Time: <span id="timer">0</span></div>
+    </div>
 
-    <div id="timer" class="hidden">Timer</div>
-
-    <div id=introTest>
+    <div id="introContainer">
 
         <h1>Coding Quiz</h1>
-        <h2>You will be presented with a series of questions during this timed quiz.
-            <br>
+        <p>You will be presented with a series of questions during this timed quiz.
+            <br />
             A correct answer will move you to the next question.
-            <br>
+            <br />
             An incorrect answer will subtract time from the timer and you can try again.
-            <br>
+            <br />
             If all the questions are correctly answered before the timer runs out, you win!
-        </h2>
+        </p>
         <h2>Good luck!</h2>
 
         <button id="start">Start Quiz</button>
     </div>
 
     <!-- Questions and Answers -->
-    <h2 id="questions"></h2>
-    <div id="answers"></div>
-    <div id="result"></div>
+    <div id="quizContainer">
+        <h2 id="questions"></h2>
+        <div id="answers"></div>
+        <div id="result"></div>
+    </div>
 
-    <div id="wonGame" class="hidden">
-        <h1>You won the game!</h1>
-        <p>Your final score was: <span id="finalScore"></span></p>
-        <p>Please enter your initials.</p>
+    <div id="resultsContainer">
 
-        <form id="initialsForm">
-            <label>
-                <input id="typesInitials" type="text">
-            </label>
-            <button id="submitInitialsBtn">Submit Initials</button>
-        </form>
+        <div id="wonGame" class="hidden">
+            <h1>You won the game!</h1>
+            <p>Your final score was: <span id="finalScore"></span></p>
+            <p>Please enter your initials.</p>
 
-        <div id="highScores" class="hidden">
-            <h2>High Scores</h2>
-            <ul id="highScoresList">
-
-            </ul>
-            <button id="clearHighScoresButton">Clear High Scores</button>
+            <div id="initialsForm">
+                <input id="initialsTextInput" type="text" />
+                <button id="saveInitialsBtn">Save</button>
+            </div>
         </div>
 
-        <div id="playAgainprompt" class="hidden">
-            <h2>Would you like to play again?</h2>
-            <button id="wonPlayAgainBtn">Yes</button>
-            <button id="wonNoBtn">No</button>
+        <div id="lostGame" class="hidden">
+            <h1>You have lost the game!</h1>
         </div>
     </div>
 
-    <div id="lostGame" class="hidden">
-        <h1>You have lost the game!</h1>
-        <h2>Would you like to play again?</h2>
-        <button id="lostPlayAgainBtn">Yes</button>
-        <button id="lostNoBtn">No</button>
+    <div id="leaderboardContainer" class="hidden">
+        <h2>High Scores</h2>
+        <ul id="leaderboardList">
+        </ul>
+        <button id="clearHighScoresButton">Clear High Scores</button>
+    </div>
+
+    <div id="playAgainContainer" class="hidden">
+        <button id="playAgainBtn">Go Back to Start of Quiz</button>
     </div>
 
 
