@@ -10,16 +10,65 @@ const leaderboardList = document.getElementById("leaderboardList");
 const showHighScoresLink = document.getElementById("showHighScoresLink");
 
 const questions = [
+  //questions were modified from w3schools.com/quiztest
   {
-    title: "What is David Blaine's first name?",
-    answers: ["David", "Chris", "Scott", "Mike"],
-    correct: "David",
+    title: "How do you write 'Hello World' in an alert box?",
+    answers: ["msg('Hello World');", "alertBox('Hello World');", "alert('Hello World');", "msgBox('Hello World');"],
+    correct: "alert('Hello World');",
   },
 
   {
-    title: "What is Scott's last name?",
-    answers: ["Anderson", "Henderson", "Jackson", "Smith"],
-    correct: "Smith",
+    title: "How do you create a function in JavaScript?",
+    answers: ["function myFunction()", "function:myFunction()", "function = myFunction()", "function(myFunction)"],
+    correct: "function myFunction()",
+  },
+
+  {
+    title: "Inside which HTML element do we put the JavaScript?",
+    answers: ["<javascript>", "<js>", "<script>", "<scripting>"],
+    correct: "<script>",
+  },
+
+  {
+    title: "What is the correct syntax for referring to an external script called 'xxx.js'?",
+    answers: ["<script lnk='xxx.js'>", "<script src='xxx.js'>", "<script href='xxx.js'>", "<script name='xxx.js'>"],
+    correct: "<script src='xxx.js'>",
+  },
+
+  {
+    title: "How do you call a function named 'myFunction'?",
+    answers: ["call myFunction()", "function myFunction()", "call function myFunction()", "myFunction()"],
+    correct: "myFunction()",
+  },
+
+  {
+    title: "Which of the following is a correctly written IF statement in JavaScript?",
+    answers: ["if (i===5)", "if i = 5", "if i===5 then", "if i=5 then"],
+    correct: "if (i===5)",
+  },
+
+  {
+    title: "How can you add a comment in a JavaScript?",
+    answers: ["'This is a comment", "//This is a comment", "<!--This is a comment-->", "`This is a comment`"],
+    correct: "//This is a comment",
+  },
+
+  {
+    title: "What is the correct way to write a JavaScript array?",
+    answers: ["let colors = 1 = ('red'), 2 = ('green'), 3 - ('blue')", "let colors = 'red', 'green', 'blue'", "let colors = ['red', 'green', 'blue']", "let colors = (1:'red', 2:'green', 3:'blue')"],
+    correct: "let colors = ['red', 'green', 'blue']",
+  },
+
+  {
+    title: "How do you round the number 6.25, to the nearest integer?",
+    answers: ["round(6.25)", "Math.round(6.25)", "rnd(6.25)", "Math.rnd(6.25)"],
+    correct: "Math.round(6.25)",
+  },
+
+  {
+    title: "Which event occurs when the user clicks on an HTML element?",
+    answers: ["onclick", "onmouseover", "onmouseclick", "onhover"],
+    correct: "onclick",
   },
 ];
 let leaderboard = [];
