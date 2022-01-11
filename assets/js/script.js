@@ -77,6 +77,7 @@ let qIndex = 0;
 let timerCount = 75;
 let finalScore = 0;
 let isWin = false;
+let timeOut;
 
 //functions//
 
@@ -171,6 +172,7 @@ function hideEverything() {
   hideContainerById("playAgainContainer");
 }
 
+//function to show leaderboard
 function showLeaderboard() {
   //hide everything
   hideEverything();
@@ -180,6 +182,7 @@ function showLeaderboard() {
   showContainerById("playAgainContainer");
 }
 
+//function to show question and loop through answers to make buttons
 function showQuestionAnswers() {
   //hide everything
   hideEverything();
@@ -203,22 +206,22 @@ function showQuestionAnswers() {
   showContainerById("quizContainer");
 }
 
-//answer click function to check the answer)
+//answer click function to check the answer
 function answerClick() {
   // Determine the answer the user chose
   let clickedAnswer = this.value;
   //check to see if the answer is correct
   //if the answer is correct
   if (clickedAnswer === questions[qIndex].correct) {
-    //show "Correct!" in the div under the answers
-    document.getElementById("result").innerHTML = "Correct!";
+    //call promptQuestionResult
+    promptQuestionResult("Correct!");
     //add one to the question index
     qIndex++;
     //call function to check if there are more questions
     checkIfMoreQuestions();
   } else {
-    //show "Incorrect!" in the div under the answers
-    document.getElementById("result").innerHTML = "Incorrect!  Time has subtracted from the timer.";
+    //call promptQuestionResult
+    promptQuestionResult("Incorrect!  Time has subtracted from the timer.");
     //subtract time from timer
     timerCount = timerCount - 5;
     //call updateTimerDisplay to update timer
@@ -252,6 +255,20 @@ function startTimer() {
       //calls endGame function
       endGame(0);
     }
+  }, 1000);
+}
+
+//prompt question result
+function promptQuestionResult(result) {
+  //show "Correct!" in the div under the answers
+  document.getElementById("result").innerHTML = result;
+  //show results container
+  showContainerById("result");
+  //clears any Timeout timers already running
+  if (timeOut) clearTimeout(timeOut);
+  //hide result after 3 seconds
+  timeOut = setTimeout(function () {
+    hideContainerById("result");
   }, 1000);
 }
 
