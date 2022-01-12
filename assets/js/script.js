@@ -74,7 +74,7 @@ const questions = [
 let leaderboard = [];
 
 let qIndex = 0;
-let timerCount = 75;
+let timerCount = 60;
 let finalScore = 0;
 let isWin = false;
 let timeOut;

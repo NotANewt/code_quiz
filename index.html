@@ -6,68 +6,103 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
+    <!-- google font links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- my css -->
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body>
-    <div id="header">
-        <a href="#" id="showHighScoresLink">Show High Scores</a>
-        <div id="timerContainer">Time: <span id="timer">0</span></div>
-    </div>
 
-    <div id="introContainer">
 
-        <h1>Coding Quiz</h1>
-        <p>You will be presented with a series of questions during this timed quiz.
-            <br />
-            A correct answer will move you to the next question.
-            <br />
-            An incorrect answer will subtract time from the timer and you can try again.
-            <br />
-            If all the questions are correctly answered before the timer runs out, you win!
-        </p>
-        <h2>Good luck!</h2>
-
-        <button id="start">Start Quiz</button>
-    </div>
-
-    <!-- Questions and Answers -->
-    <div id="quizContainer">
-        <h2 id="questions"></h2>
-        <div id="answers"></div>
-        <div id="result"></div>
-    </div>
-
-    <div id="resultsContainer">
-
-        <div id="wonGame" class="hidden">
-            <h1>You won the game!</h1>
-            <p>Your final score was: <span id="finalScore"></span></p>
-            <p>Please enter your initials.</p>
-
-            <div id="initialsForm">
-                <input id="initialsTextInput" type="text" />
-                <button id="saveInitialsBtn">Save</button>
+<body class="bg-dark font-Orbitron text-warning">
+    <!-- container of entire site -->
+    <div class="container-fluid">
+        <!-- header container -->
+        <div class="container">
+            <div id="header" class="row">
+                <a href="#" id="showHighScoresLink" class="col">Show High Scores</a>
+                <div id="timerContainer" class="col">Time: <span id="timer">0</span></div>
             </div>
         </div>
 
-        <div id="lostGame" class="hidden">
-            <h1>You have lost the game!</h1>
+        <!-- intro container -->
+        <div id="introContainer" class="container">
+
+            <h1>Coding Quiz</h1>
+            <p>Try to answer this series of coding questions.</p>
+
+            <p>A correct answer will move you to the next question.</p>
+
+            <p>An incorrect answer will subtract time from the timer and you can try again.</p>
+
+            <p>If all the questions are correctly answered before the timer runs out, you win!</p>
+
+            <h2>Good luck!</h2>
+
+            <button id="start">Start Quiz</button>
         </div>
+
+        <!-- Questions and Answers Container -->
+        <div id="quizContainer" class="container">
+            <h2 id="questions"></h2>
+            <div id="answers"></div>
+            <div id="result"></div>
+        </div>
+
+        <!-- Results Container -->
+        <div id="resultsContainer" class="container">
+
+            <!-- Won Game-->
+            <div id="wonGame" class="hidden">
+                <h1>You won the game!</h1>
+                <p>Your final score was: <span id="finalScore"></span></p>
+                <p>Please enter your initials.</p>
+
+                <!-- initials go here -->
+                <div id="initialsForm">
+                    <input id="initialsTextInput" type="text" />
+                    <button type="button" class="btn btn-success" id="saveInitialsBtn">Save</button>
+                </div>
+            </div>
+
+            <!-- Lost Game -->
+            <div id="lostGame" class="hidden">
+                <h1>You have lost the game!</h1>
+            </div>
+        </div>
+
+        <!-- Leaderboard Container -->
+        <div id="leaderboardContainer" class="container hidden">
+            <h2>High Scores</h2>
+            <ul id="leaderboardList">
+            </ul>
+            <button id="clearHighScoresButton">Clear High Scores</button>
+        </div>
+
+        <!-- Play Again Container -->
+        <div id="playAgainContainer" class="container hidden">
+            <button id="playAgainBtn">Go Back to Start of Quiz</button>
+        </div>
+
+        <!-- footer -->
+        <footer id="footerContainer" class="fixed-bottom text-center">
+            <h5>Made with &#x1F49C; and JavaScript by Meegan Anderson 2022 </h5>
+        </footer>
     </div>
 
-    <div id="leaderboardContainer" class="hidden">
-        <h2>High Scores</h2>
-        <ul id="leaderboardList">
-        </ul>
-        <button id="clearHighScoresButton">Clear High Scores</button>
-    </div>
-
-    <div id="playAgainContainer" class="hidden">
-        <button id="playAgainBtn">Go Back to Start of Quiz</button>
-    </div>
-
-
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <!-- my js -->
     <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 
