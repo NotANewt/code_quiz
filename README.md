@@ -1,89 +1,16 @@
-# hw4_code_quiz
-
 # 04 Web APIs: Code Quiz
 
-## Your Task
+## Description
 
-At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment, perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges.
+This app is a timed quiz that will run in the browser. It features dynamically updated HTML and CSS powered by JavaScript. It has a clean, polished, and responsive user interface.
 
-To help familiarize you with these tests and allow you to use the skills covered in this unit, this week’s homework invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface.
+The user is presented with a timed quiz on JavaScript fundamentals. This app stores high scores so that the user can gague their progress compared to their peers. When the user clicks the Start Quiz button, a timer starts and they are presented with a question. If they answer the question incorrectly, the answer's button turns red, five seconds is subtracted from the timer, and text will appear to inform them that they chose incorrectly, and that time has been removed from the timer. If they answer correctly, text will appear to inform them that they are correct, and they are presented with another question. If the timer reaches 0, the user loses, and they are prompted to return to the start of the quiz. If all questions are answered, the user won, and they can enter their initials, which will be saved with their score. Upon submitting their initials, they are taken to the high scores page, which shows the ranked scores with their initials. This high scores leaderboard that can be access via a link in the top left corner at any time. The high scores leaderboard has a button to clear the high scores and another button that will return the user to the start of the quiz.
 
-This week’s coursework will equip you with all the skills you need to succeed in this assignment.
+## gif
 
-## User Story
+![A gif of the Coding Quiz webpage, which starts at the "Coding Quiz" introduction page, moves to the high scores page, then back to the introduction page.  The quiz starts, and we are presented with a series of questions and answers.  Answers turn red when they are incorrect. Correct answers result in being presented with a new question.  The user wins, and is taken to a page where they can enter and submmit their initials.  After submitting their initials, the high scores page appears, which shows a ranked list of scores with the corresponding initials.  The user clears the high scores by pressing a blue "Clear High Scores" button, and clicks a "Return to Start Page" to return to the beginning.](./assets/img/hw4.gif)
 
-```
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
+## Links to Application
 
-## Acceptance Criteria
-
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
-```
-
-## Mock-Up
-
-The following animation demonstrates the application functionality:
-
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/04-web-apis-homework-demo.gif)
-
-## Grading Requirements
-
-This homework is graded based on the following criteria:
-
-### Technical Acceptance Criteria: 40%
-
-- Satisfies all of the preceding acceptance criteria.
-
-### Deployment: 32%
-
-- Application deployed at live URL.
-
-- Application loads with no errors.
-
-- Application GitHub URL submitted.
-
-- GitHub repository contains application code.
-
-### Application Quality: 15%
-
-- Application user experience is intuitive and easy to navigate.
-
-- Application user interface style is clean and polished.
-
-- Application resembles the mock-up functionality provided in the homework instructions.
-
-### Repository Quality: 13%
-
-- Repository has a unique name.
-
-- Repository follows best practices for file structure and naming conventions.
-
-- Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-- Repository contains multiple descriptive commit messages.
-
-- Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-- The URL of the functional, deployed application.
-
-- The URL of the GitHub repository, with a unique name and a readme describing the project.
-
----
+- Here is the repo: [NotANewt/hw4_code_quiz](https://github.com/NotANewt/hw4_code_quiz)
+- Here is the pages: [NotANewt/pages](https://notanewt.github.io/hw4_code_quiz/)
