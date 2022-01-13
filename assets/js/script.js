@@ -226,6 +226,9 @@ function answerClick() {
     //call function to check if there are more questions
     checkIfMoreQuestions();
   } else {
+    //change button color to red
+    let clickedWrongAnswerButton = this;
+    clickedWrongAnswerButton.setAttribute("class", "btn btn-danger m-1 p-1");
     //call promptQuestionResult
     promptQuestionResult("Incorrect!  Time has subtracted from the timer.");
     //subtract time from timer
