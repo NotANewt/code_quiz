@@ -23,75 +23,88 @@
     <!-- container of entire site -->
     <div class="container-fluid">
         <!-- header container -->
-        <div class="container">
+        <div class="container p-2">
             <div id="header" class="row">
-                <a href="#" id="showHighScoresLink" class="col">Show High Scores</a>
-                <div id="timerContainer" class="col">Time: <span id="timer">0</span></div>
+                <a href="#" id="showHighScoresLink" class="col-6">Show High Scores</a>
+                <div id="timerContainer" class="col-6">Time: <span id="timer">0</span></div>
             </div>
         </div>
 
         <!-- intro container -->
         <div id="introContainer" class="container">
+            <!-- title and directions -->
+            <div class="d-grid gap-2">
+                <h1 class="row p-2">Coding Quiz</h1>
+                <div class="border border-warning col-8 p-2">
+                    <p class="p-1">Try to answer this series of coding questions.</p>
 
-            <h1>Coding Quiz</h1>
-            <p>Try to answer this series of coding questions.</p>
+                    <p class="p-1">A correct answer will move you to the next question.</p>
 
-            <p>A correct answer will move you to the next question.</p>
+                    <p class="p-1">An incorrect answer will subtract time from the timer and you can try again.</p>
 
-            <p>An incorrect answer will subtract time from the timer and you can try again.</p>
-
-            <p>If all the questions are correctly answered before the timer runs out, you win!</p>
-
-            <h2>Good luck!</h2>
-
-            <button id="start">Start Quiz</button>
+                    <p class="p-1">If all the questions are correctly answered before the timer runs out, you win!</p>
+                </div>
+                <!-- good luck -->
+                <h2 class="p-2">Good luck!</h2>
+            </div>
+            <!-- start quiz button -->
+            <button id="start" class="btn btn-primary">Start Quiz</button>
         </div>
 
         <!-- Questions and Answers Container -->
         <div id="quizContainer" class="container">
-            <h2 id="questions"></h2>
-            <div id="answers"></div>
-            <div id="result"></div>
+            <div class="row">
+                <div class="col-8">
+                    <h2>Question:</h2>
+                    <p id="questions" class="border border-warning p-2"></p>
+                    <div id="answers" class="btn-group-vertical"></div>
+                    <div id="result"></div>
+                </div>
+            </div>
         </div>
 
         <!-- Results Container -->
         <div id="resultsContainer" class="container">
 
             <!-- Won Game-->
-            <div id="wonGame" class="hidden">
-                <h1>You won the game!</h1>
-                <p>Your final score was: <span id="finalScore"></span></p>
-                <p>Please enter your initials.</p>
-
-                <!-- initials go here -->
-                <div id="initialsForm">
-                    <input id="initialsTextInput" type="text" />
-                    <button type="button" class="btn btn-success" id="saveInitialsBtn">Save</button>
+            <div id="wonGame" class="container hidden pt-2">
+                <div class="row">
+                    <div class="col">
+                        <h1>You won the game!</h1>
+                        <p class="col-8 border border-warning p-2">Your final score was: <span id="finalScore"></span>
+                        </p>
+                        <p>Please enter your initials.</p>
+                        <!-- initials go here -->
+                        <div id="initialsForm">
+                            <input id="initialsTextInput" type="text" />
+                            <button type="button" class="btn btn-primary" id="saveInitialsBtn">Save</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Lost Game -->
-            <div id="lostGame" class="hidden">
+            <div id="lostGame" class="hidden pt-2">
                 <h1>You have lost the game!</h1>
             </div>
         </div>
 
         <!-- Leaderboard Container -->
-        <div id="leaderboardContainer" class="container hidden">
+        <div id="leaderboardContainer" class="container hidden pt-2">
             <h2>High Scores</h2>
             <ul id="leaderboardList">
             </ul>
-            <button id="clearHighScoresButton">Clear High Scores</button>
+            <button id="clearHighScoresButton" class="btn btn-primary">Clear High Scores</button>
         </div>
 
         <!-- Play Again Container -->
-        <div id="playAgainContainer" class="container hidden">
-            <button id="playAgainBtn">Go Back to Start of Quiz</button>
+        <div id="playAgainContainer" class="container hidden pt-4">
+            <button id="playAgainBtn" class="btn btn-primary">Go Back to Start of Quiz</button>
         </div>
 
         <!-- footer -->
-        <footer id="footerContainer" class="fixed-bottom text-center">
-            <h5>Made with &#x1F49C; and JavaScript by Meegan Anderson 2022 </h5>
+        <footer id="footerContainer" class="col fixed-bottom text-start ps-4">
+            <h6>Made with 💙 and JavaScript by Meegan Anderson 2022 </h6>
         </footer>
     </div>
 

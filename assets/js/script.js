@@ -176,13 +176,17 @@ function hideEverything() {
 function showLeaderboard() {
   //hide everything
   hideEverything();
-  //show keaderboardContainer
+  //hide timer element
+  hideContainerById("timerContainer");
+  // Clears interval and stops timer
+  clearInterval(timer);
+  //show leaderboardContainer
   showContainerById("leaderboardContainer");
   //show playAgainContainer
   showContainerById("playAgainContainer");
 }
 
-//function to show question and loop through answers to make buttons
+//show question and loop through answers to make buttons
 function showQuestionAnswers() {
   //hide everything
   hideEverything();
@@ -197,6 +201,8 @@ function showQuestionAnswers() {
     answerBtn.textContent = answer;
     //add value attribute (value and text)
     answerBtn.setAttribute("value", answer);
+    //set class
+    answerBtn.setAttribute("class", "btn btn-primary m-1 p-1");
     //add click event
     answerBtn.onclick = answerClick;
     //append button to the answers div
