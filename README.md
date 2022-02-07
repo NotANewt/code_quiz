@@ -14,6 +14,11 @@ The user is presented with a timed quiz on JavaScript fundamentals. This app sto
 
 ![A gif of the Coding Quiz app, which starts at the "Coding Quiz" introduction page, moves to the high scores page, then back to the introduction page.  The quiz starts, and we are presented with a series of questions and answers.  Answers turn red when they are incorrect. Correct answers result in being presented with a new question.  The user wins, and is taken to a page where they can enter and submmit their initials.  After submitting their initials, the high scores page appears, which shows a ranked list of scores with the corresponding initials.  The user clears the high scores by pressing a blue "Clear High Scores" button, and clicks a "Return to Start Page" to return to the beginning.](./assets/img/hw4.gif)
 
+## Contact Information
+
+- NotANewt's email: [Email Me](mailto:meegan.r.anderson@gmail.com)
+- NotANewt's gitHub profile: [NotANewt/profile](https://github.com/NotANewt)
+
 ## Links to Application
 
 - Here is the repo: [NotANewt/hw4_code_quiz](https://github.com/NotANewt/hw4_code_quiz)
