@@ -1,4 +1,4 @@
-# 04 Web APIs: Code Quiz
+# Code Quiz
 
 ## Description
 
@@ -21,5 +21,5 @@ The user is presented with a timed quiz on JavaScript fundamentals. This app sto
 
 ## Links to Application
 
-- Here is the repo: [NotANewt/hw4_code_quiz](https://github.com/NotANewt/hw4_code_quiz)
-- Here is the pages: [NotANewt/pages](https://notanewt.github.io/hw4_code_quiz/)
+- Here is the repo: [NotANewt/hw4_code_quiz](https://github.com/NotANewt/code_quiz)
+- Here is the pages: [NotANewt/pages](https://notanewt.github.io/code_quiz/)
